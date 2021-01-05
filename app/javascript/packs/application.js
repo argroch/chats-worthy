@@ -17,9 +17,4 @@ require("jquery")
 // const imagePath = (name) => images(name, true)
 
 
-// $(document).on('turbolinks:load', function () {
-// 	$('#msg_submit').click(function(){
-// 		$('#msg_input').val('');
-// 	})
-// })
 

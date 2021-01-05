@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
 	def create
 		@room = Room.create(room_params)
 		if @room.save
-			ActionCable.server.broadcast "room_channel", id: @room.id, topic: @room.topic, icon: @room.category.icon
+			redirect_to room_path(id: @room.id)
 		end
 	end
 
