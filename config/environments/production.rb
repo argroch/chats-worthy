@@ -40,8 +40,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   config.action_cable.mount_path = '/cable'
-  config.action_cable.url = 'wss://chats-worthy.herokuapp.com/cable'
-  config.action_cable.allowed_request_origins = [ "http://chats-worthy.herokuapp.com", /http:\/\/chats-worthy.herokuapp.com.*/ ]
+  config.action_cable.url = 'wss://chatterful.herokuapp.com/cable'
+  config.action_cable.allowed_request_origins = [ "http://chatterful.herokuapp.com", /http:\/\/chatterful.herokuapp.com.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
