@@ -1,14 +1,18 @@
-<%= form_for @message, remote: true do |f| %>
-	<div class="form-group">
-		<%= f.text_field :content, placeholder: "Have your say... press Enter to submit", class: "form-control" %>
-	</div>
-	<%= f.hidden_field :user_id, value: current_user.id %>
-	<%= f.hidden_field :room_id, value: @room.id %>
-	<%= f.submit "Say It", class: "invisible" %>
-<% end %>
+<%# if current_user.approval == true %>
+	<%= form_for @message, remote: true do |f| %>
+		<div class="form-group">
+			<%= f.text_field :content, placeholder: "Have your say... press Enter to submit", class: "form-control" %>
+		</div>
+		<%= f.hidden_field :user_id, value: current_user.id %>
+		<%= f.hidden_field :room_id, value: @room.id %>
+		<%= f.submit "Say It", class: "invisible" %>
+	<% end %>
 
-<div class="row">
-	<div class="col-md-8" id="room_messages" data-channel-subscribe="room" data-room-id="<%= @room.id %>">
+	<div class="row">
+		<div class="col-md-8" id="room_messages" data-channel-subscribe="room" data-room-id="<%= @room.id %>">
 
+		</div>
 	</div>
-</div>
+<%# else %>
+	<!-- <p>Please return to the <%#= link_to "Home", root_path %> page to see why you can't view this page.</p> -->
+<%# end %>
