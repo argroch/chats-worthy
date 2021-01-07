@@ -13,7 +13,7 @@ consumer.subscriptions.create("RoomChannel", {
 
   received(data) {
   	if(data.room == $('#room_messages').attr('data-room-id')){
-    	$('#room_messages').append('<div class="row"><div class="col-md-1"><i class="fas fa-portrait fa-4x"></i></div><div class="message"><p><strong>' + data.user + '</strong> <small>' + data.timestamp + '</small></p><p>' + data.content + '</p></div></div>');
+    	$('#room_messages').prepend('<div class="row"><div class="col-md-1"><i class="fas fa-portrait fa-4x"></i></div><div class="message col-md-11"><p><strong>' + data.user + '</strong> <small>' + data.timestamp + '</small></p><p>' + data.content + '</p></div></div>');
     }
   }
 })
@@ -27,11 +27,10 @@ $(document).on('turbolinks:load', function () {
 submit_messages = function () {
   $('#message_content').on('keydown', function (event) {
     if (event.keyCode == 13) {
-      $('input').click()
-      event.target.value = ''
-      event.preventDefault()
+      $('input').click();
+      event.target.value = '';
+      event.preventDefault();
     }
   });
 }
-
 

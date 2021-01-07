@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
 		@message = Message.create(msg_params)
 
 		if @message.save
-			ActionCable.server.broadcast "room_channel", content: @message.content, user: @message.user.handle, room: @message.room.id, timestamp: @message.created_at.strftime("%I:%M%p")
+			ActionCable.server.broadcast "room_channel", content: @message.content, user: @message.user.handle, room: @message.room.id, timestamp: @message.created_at.localtime.strftime("%I:%M%p")
 		end
 	end
 

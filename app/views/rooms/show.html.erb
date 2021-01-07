@@ -1,23 +1,38 @@
-<%= form_for @message, remote: true do |f| %>
-	<div class="form-group">
-		<%= f.text_field :content, placeholder: "Have your say... press Enter to submit", class: "form-control" %>
+<div class="row mar-top-75" id="room_topic top">
+	<div class="col-md-2">
+		<small>The topic is...</small>
 	</div>
-	<%= f.hidden_field :user_id, value: current_user.id %>
-	<%= f.hidden_field :room_id, value: @room.id %>
-	<%= f.submit "Say It", class: "invisible" %>
-<% end %>
+	<div class="col-md-10">
+		<h2>
+			<%= @room.topic %>
+		</h2>
+	</div>
+</div>
 
+<div class="row" id="message_form">
+	<div class="col-md-12">
+		<%= form_for @message, remote: true do |f| %>
+			<div class="form-group">
+				<%= f.text_field :content, placeholder: "Have your say... press Enter to submit", class: "form-control" %>
+			</div>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.hidden_field :room_id, value: @room.id %>
+			<%= f.submit "Say It", class: "invisible" %>
+		<% end %>
+	</div>
+</div>
 
 <div id="room_messages" data-channel-subscribe="room" data-room-id="<%= @room.id %>">
-	<% @room.messages.each do |message| %>
+	<% @room.messages.reverse.each do |message| %>
 		<div class="row">
 			<div class="col-md-1">
 				<i class="fas fa-portrait fa-4x"></i>
 			</div>
 			<div class="message col-md-11">
-				<p><strong><%= message.user.handle %></strong> <small><%=  message.created_at.strftime("%I:%M%p") %></small></p>
+				<p><strong><%= message.user.handle %></strong> <small><%=  message.created_at.localtime.strftime("%I:%M%p") %></small></p>
 				<p><%= message.content %></p>
 			</div>
 		</div>
 	<% end %>
 </div>
+<div id="bottom"></div>

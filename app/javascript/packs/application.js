@@ -18,3 +18,10 @@ require("jquery")
 
 
 
+$(document).on('turbolinks:load', function () {
+	$(document).on('keypress',function(e) {
+    if(e.which == 13) {
+      $(document).scrollTop($(document).height());   
+		}
+	});
+})

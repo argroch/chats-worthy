@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chittychatty</title>
+    <title>Chatterful</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <% if controller.controller_name == "home" %>
+          <a class="navbar-brand" href="#">Hello there, <%= current_user.handle %>!</a>
+        <% else %>
+          <a class="navbar-brand" href="#top"><%= @room.topic %> </a>
+        <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <% if controller.controller_name == "rooms" %>
+              <li class="nav-item">
+                <%= link_to "Return to the Hub", root_path, class: "nav-link" %>
+              </li>
+            <% end %>
+            <li class="nav-item">
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <% end %>
+
     <div class="container">
-      <% if user_signed_in? %>
-        <%= link_to "Return to the Hub", root_path %> | <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-      <% end %>
       <%= yield %>
     </div>
   </body>
