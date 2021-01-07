@@ -12,6 +12,7 @@
 			<div class="form-group">
 				<%= f.select(:category_id, options_from_collection_for_select(@categories, :id, :name), {include_blank: "Choose a Room Category"}, {class: "form-control"}) %>
 			</div>
+			<%= f.number_field :user_id, value: current_user.id, class: "invisible" %>
 			<div class="form-group">
 				<%= f.text_field :topic, placeholder: "Enter a Topic... then press Enter to start your Room!", class: "form-control" %>
 			</div>
@@ -33,6 +34,7 @@
 					<% cat.rooms.each do |room| %>
 						<tr>
 							<td><%= link_to room.topic, room %></td>
+							<td>created by: <%= room.user.handle %></td>
 						</tr>
 					<% end %>
 				</table>
