@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-md-6 offset-md-3 text-center">
-		<h2>Chats-Worthy</h2>
+		<small>Isn't it...
+		<h1>Chatterful</h1>
 		<p>Create a room and start chatting!</p>
 	</div>
 </div>
@@ -19,19 +20,23 @@
 	</div>
 </div>
 <div class="row">
-	<h3>Rooms by Category</h3>
+	<div class="col-md-6 offset-md-3 text-center">
+		<h3>Rooms by Category</h3>
+	</div>
 </div>
 <div class="row">
-	<% @categories.each do |cat| %>
-		<% if !cat.rooms.empty? %>
-			<h4><%= cat.name %></h4>
-			<table class="table table-striped">
-				<% cat.rooms.each do |room| %>
-					<tr>
-						<td><%= link_to room.topic, room %></td>
-					</tr>
-				<% end %>
-			</table>
+	<div class="col-md-6 offset-md-3">
+		<% @categories.each do |cat| %>
+			<% if !cat.rooms.empty? %>
+				<h4><i class="fas fa-<%= cat.icon %>"></i> <%= cat.name %></h4>
+				<table class="table table-striped">
+					<% cat.rooms.each do |room| %>
+						<tr>
+							<td><%= link_to room.topic, room %></td>
+						</tr>
+					<% end %>
+				</table>
+			<% end %>
 		<% end %>
-	<% end %>
+	</div>
 </div>

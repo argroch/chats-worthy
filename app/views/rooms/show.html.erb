@@ -7,8 +7,17 @@
 	<%= f.submit "Say It", class: "invisible" %>
 <% end %>
 
-<div class="row">
-	<div class="col-md-8" id="room_messages" data-channel-subscribe="room" data-room-id="<%= @room.id %>">
 
-	</div>
+<div id="room_messages" data-channel-subscribe="room" data-room-id="<%= @room.id %>">
+	<% @room.messages.each do |message| %>
+		<div class="row">
+			<div class="col-md-1">
+				<i class="fas fa-portrait fa-4x"></i>
+			</div>
+			<div class="message col-md-11">
+				<p><strong><%= message.user.handle %></strong> <small><%=  message.created_at.strftime("%I:%M%p") %></small></p>
+				<p><%= message.content %></p>
+			</div>
+		</div>
+	<% end %>
 </div>
