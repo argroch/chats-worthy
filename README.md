@@ -18,5 +18,3 @@ So, what this app does:
 * Or a User can choose a room to enter
 
 * Users chat away within a Room
-
-* ...
